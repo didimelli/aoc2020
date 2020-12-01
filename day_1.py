@@ -1,3 +1,5 @@
+import sys
+
 _input = [
     1993,
     1715,
@@ -203,8 +205,20 @@ _input = [
 
 if __name__ == "__main__":
     goal = 2020
+    # part one
     for _in in _input:
         tmp = goal - _in
         if tmp in _input:
-            print(f"{_in+tmp=},{_in*tmp=}")
+            print(f"{_in=}, {tmp=}")
+            print(f"{_in+tmp=}, {_in*tmp=}")
             break
+
+    # part 2
+    for _in in _input:
+        tmp1 = goal - _in
+        for __in in _input:
+            tmp2 = tmp1 - __in
+            if tmp2 in _input:
+                print(f"{_in=}, {__in=}, {tmp2=}")
+                print(f"{_in+__in+tmp2=}, {_in*__in*tmp2=}")
+                sys.exit(0)
