@@ -1043,8 +1043,24 @@ class InputLine:
         else:
             return count
 
+    def validate_for_part_2(self) -> None:
+        first_index = self._min - 1  # to account for zero indexed strings
+        second_index = self._max - 1  # to account for zero indexed strings
+        first_letter = self._payload[first_index]
+        second_letter = self._payload[second_index]
+        count = 0
+        if first_letter == self._letter:
+            count += 1
+        if second_letter == self._letter:
+            count += 1
+        if count != 1:
+            raise ValidationError(
+                f"Count {count}. {first_letter=}, {second_letter=}, {self._min}-{self._max} {self._payload=}"
+            )
+
 
 if __name__ == "__main__":
+    # part 1
     valid: List[InputLine] = []
     for l in _input.splitlines():
         if not l:
@@ -1055,5 +1071,17 @@ if __name__ == "__main__":
             valid.append(_tmp)
         except ValidationError as e:
             print(e)
+    print(f"First part: {len(valid)}")
 
-    print(len(valid))
+    # part 2
+    valid: List[InputLine] = []
+    for l in _input.splitlines():
+        if not l:
+            continue
+        _tmp = InputLine.from_raw_line(l)
+        try:
+            count = _tmp.validate_for_part_2()
+            valid.append(_tmp)
+        except ValidationError as e:
+            print(e)
+    print(f"Second part: {len(valid)}")
