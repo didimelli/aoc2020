@@ -1034,7 +1034,7 @@ class InputLine:
             _payload=payload,
         )
 
-    def validate(self) -> int:
+    def validate_for_part_1(self) -> int:
         count = self._payload.count(self._letter)
         if not self._min <= count <= self._max:
             raise ValidationError(
@@ -1051,7 +1051,7 @@ if __name__ == "__main__":
             continue
         _tmp = InputLine.from_raw_line(l)
         try:
-            count = _tmp.validate()
+            count = _tmp.validate_for_part_1()
             valid.append(_tmp)
         except ValidationError as e:
             print(e)
