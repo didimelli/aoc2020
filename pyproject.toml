@@ -8,6 +8,7 @@ authors = ["didi <didi@leaf.space>"]
 python = "^3.8"
 requests = "^2.25.0"
 devtools = "^0.6.1"
+pydantic = "^1.7.3"
 
 [tool.poetry.dev-dependencies]
 black = "^20.8b1"
